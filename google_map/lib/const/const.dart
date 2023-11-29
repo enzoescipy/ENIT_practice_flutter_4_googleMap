@@ -10,3 +10,4 @@ const KEY_TITLE = 'title';
 const KEY_LATITUDE = 'latitude';
 const KEY_LONGITUDE = 'longitude';
 const KEY_CIRCLECOLOR = 'circlecolor';
+const KEY_PKEY = "pkey";

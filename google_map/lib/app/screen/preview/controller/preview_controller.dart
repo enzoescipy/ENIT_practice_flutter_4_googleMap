@@ -4,6 +4,7 @@ import 'package:enitproject/model/storylist_model.dart';
 import 'package:enitproject/repository/storylist_network_repository.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PreviewController extends GetxController{
 
@@ -20,5 +21,14 @@ class PreviewController extends GetxController{
     });
     super.onInit();
   }
+
+  Future<void> fireBaseDelete(int index) async {
+    EasyLoading.show();
+
+    await storyListNetworkRepository.deleteStoryModel(index);
+
+    EasyLoading.dismiss();
+  }
+
 
 }

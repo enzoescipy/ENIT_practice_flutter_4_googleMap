@@ -18,6 +18,7 @@ class StoryListModel {
   double? longitude;
   Color changeStoryColor = GREEN_BRIGHT_COLOR;
   bool? circleColor;
+  int pkey;
 
   StoryListModel.fromMap(Map<String, dynamic> map)
       : addressDetail = map[KEY_ADDRESS_DETAIL],
@@ -30,7 +31,8 @@ class StoryListModel {
         title = map[KEY_TITLE],
         latitude = map[KEY_LATITUDE].runtimeType == String ? double.parse(map[KEY_LATITUDE]) : map[KEY_LATITUDE].toDouble(),
         longitude = map[KEY_LONGITUDE].runtimeType == String ? double.parse(map[KEY_LONGITUDE]) : map[KEY_LONGITUDE].toDouble(),
-        circleColor = map[KEY_CIRCLECOLOR];
+        circleColor = map[KEY_CIRCLECOLOR],
+        pkey = map[KEY_PKEY];
   StoryListModel.fromSnapshot(DocumentSnapshot snapshot) : this.fromMap(snapshot.data() as Map<String, dynamic>);
 
   Map<String, dynamic> toMap() {

@@ -150,7 +150,7 @@ class CreateStoryView extends GetView<CreateStoryController> {
         icon: Icon(Icons.send),
         onPressed: (() async {
           controller.isCreated = true;
-          await controller.FireBaseCreate();
+          await controller.fireBaseCreate();
           Get.back();
         }),
       ),

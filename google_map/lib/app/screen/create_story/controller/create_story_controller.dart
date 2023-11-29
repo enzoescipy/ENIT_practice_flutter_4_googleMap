@@ -25,7 +25,7 @@ class CreateStoryController extends GetxController {
 
   bool isCreated = false;
 
-  Future<void> FireBaseCreate() async {
+  Future<void> fireBaseCreate() async {
     EasyLoading.show();
 
     if (isCreated == false) {

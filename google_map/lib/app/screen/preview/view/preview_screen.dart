@@ -131,6 +131,22 @@ class PreviewScreen extends GetView<PreviewController> {
                                   ],
                                 ),
                               ),
+                              IconButton(
+                                icon: const Icon(Icons.edit),
+                                color: Colors.black,
+                                iconSize: 35.0,
+                                onPressed: () {
+                                  // TODO
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                color: Colors.black,
+                                iconSize: 35.0,
+                                onPressed: () {
+                                  controller.fireBaseDelete(index);
+                                },
+                              )
                             ],
                           ),
                         ),
