@@ -18,7 +18,7 @@ class StoryListModel {
   double? longitude;
   Color changeStoryColor = GREEN_BRIGHT_COLOR;
   bool? circleColor;
-  int pkey;
+  int? pkey;
 
   StoryListModel.fromMap(Map<String, dynamic> map)
       : addressDetail = map[KEY_ADDRESS_DETAIL],
@@ -48,6 +48,7 @@ class StoryListModel {
       KEY_LATITUDE: latitude,
       KEY_LONGITUDE: longitude,
       KEY_CIRCLECOLOR: circleColor,
+      KEY_PKEY: pkey,
     };
 
     return resultMap;

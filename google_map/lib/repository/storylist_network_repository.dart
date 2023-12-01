@@ -48,6 +48,14 @@ class StoryListNetworkRepository {
 
     await Future.wait([futureWorks]);
   }
+
+  Future<void> updateStoryModel(StoryListModel storyListModel) async  {
+    final futureWorks = FirebaseFirestore.instance.collection(COLLECTION_STORYPLAYLIST)
+    .where('pkey', isEqualTo: storyListModel.pkey)
+    .get().then((value) => value.docs[0].reference.set(storyListModel.toMap()));
+
+    await Future.wait([futureWorks]);
+  }
 }
 
 StoryListNetworkRepository storyListNetworkRepository = StoryListNetworkRepository();

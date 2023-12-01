@@ -8,7 +8,8 @@ import '../../story/view/location_view.dart';
 import '../../create_story/view/create_story_view.dart';
 
 import 'package:enitproject/app/screen/create_story/binding/create_story_binding.dart';
-import 'package:enitproject/app/screen/create_story/controller/create_story_controller.dart';
+import 'package:enitproject/app/screen/update_story/binding/update_story_binding.dart';
+import 'package:enitproject/app/screen/update_story/view/update_story_view.dart';
 
 class PreviewScreen extends GetView<PreviewController> {
   const PreviewScreen({Key? key}) : super(key: key);
@@ -55,9 +56,11 @@ class PreviewScreen extends GetView<PreviewController> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text(
-                  '${LocationService.to.storyList.length}',
-                  style: const TextStyle(color: FONT_MID_BLACK_COLOR, fontWeight: FontWeight.w500, fontSize: 20.0),
+                Obx(
+                  () => Text(
+                    '${LocationService.to.storyList.length}',
+                    style: const TextStyle(color: FONT_MID_BLACK_COLOR, fontWeight: FontWeight.w500, fontSize: 20.0),
+                  ),
                 )
               ],
             ),
@@ -82,11 +85,15 @@ class PreviewScreen extends GetView<PreviewController> {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
-                                child: Image.network(
-                                  '${LocationService.to.storyList[index].image}',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Image.network(
+                                    '${LocationService.to.storyList[index].image}',
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.fitHeight,
+                                    alignment: FractionalOffset.center,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -99,6 +106,7 @@ class PreviewScreen extends GetView<PreviewController> {
                                   children: [
                                     Text(
                                       '${LocationService.to.storyList[index].addressSearch}',
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
                                         fontSize: 13.0,
                                         fontWeight: FontWeight.w500,
@@ -112,6 +120,7 @@ class PreviewScreen extends GetView<PreviewController> {
                                       children: [
                                         Text(
                                           '${LocationService.to.storyList[index].title}',
+                                          overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                                         ),
                                         const SizedBox(
@@ -124,6 +133,7 @@ class PreviewScreen extends GetView<PreviewController> {
                                     ),
                                     Text(
                                       '${LocationService.to.storyList[index].addressDetail}',
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
                                         fontSize: 15.0,
                                       ),
@@ -136,7 +146,11 @@ class PreviewScreen extends GetView<PreviewController> {
                                 color: Colors.black,
                                 iconSize: 35.0,
                                 onPressed: () {
-                                  // TODO
+                                  Get.to(
+                                    const UpdateStoryView(),
+                                    binding: UpdateStroyBinding(),
+                                    arguments: {index: index}
+                                  );
                                 },
                               ),
                               IconButton(

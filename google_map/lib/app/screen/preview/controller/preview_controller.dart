@@ -6,6 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import 'dart:developer';
+
 class PreviewController extends GetxController{
 
   //싱글톤처럼 쓰기위함
@@ -24,8 +26,19 @@ class PreviewController extends GetxController{
 
   Future<void> fireBaseDelete(int index) async {
     EasyLoading.show();
+    // grab the current storylistmodel.
+    final targetPkey = LocationService.to.storyList[index].pkey;
+    log(index.toString());
+    log(LocationService.to.storyList.map((e) => e.pkey).toList().toString());
+    log(targetPkey.toString());
+    if (targetPkey == null) {
+      return;
+    }
 
-    await storyListNetworkRepository.deleteStoryModel(index);
+    log(targetPkey.toString());    
+
+    await storyListNetworkRepository.deleteStoryModel(targetPkey);
+    LocationService.to.storyList.removeWhere((element) => element.pkey == targetPkey);
 
     EasyLoading.dismiss();
   }
