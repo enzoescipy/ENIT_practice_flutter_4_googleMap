@@ -147,9 +147,8 @@ class PreviewScreen extends GetView<PreviewController> {
                                 iconSize: 35.0,
                                 onPressed: () {
                                   Get.to(
-                                    const UpdateStoryView(),
+                                    UpdateStoryView(storyIndex: index),
                                     binding: UpdateStroyBinding(),
-                                    arguments: {index: index}
                                   );
                                 },
                               ),

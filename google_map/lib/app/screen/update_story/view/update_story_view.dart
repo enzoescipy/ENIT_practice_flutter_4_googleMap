@@ -1,10 +1,17 @@
 import 'package:enitproject/app/screen/update_story/controller/update_story_controller.dart';
+import 'package:enitproject/service/location_service.dart';
+import 'package:enitproject/model/storylist_model.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:enitproject/const/const.dart';
+import 'dart:developer';
 
 class UpdateStoryView extends GetView<UpdateStoryController> {
-  const UpdateStoryView({Key? key}) : super(key: key);
+  final int storyIndex;
+  late final Map<String, dynamic> storyMap;
+  UpdateStoryView({required this.storyIndex, Key? key}) : super(key: key) {
+    storyMap = LocationService.to.storyList[storyIndex].toMap();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,7 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
             elevation: 0.0,
             centerTitle: true,
             title: const Text(
-              '마커 생성',
+              '마커 수정',
               style: TextStyle(color: Colors.black),
             ),
             leading: Padding(
@@ -55,6 +62,9 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewNameField() {
+    log("11");
+    final textFieldControl = controller.textFieldControllers[KEY_TITLE];
+    textFieldControl?.text = storyMap[KEY_TITLE].toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -70,6 +80,10 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewLatitudeField() {
+    log("12");
+    final textFieldControl = controller.textFieldControllers[KEY_LATITUDE];
+    textFieldControl?.text = storyMap[KEY_LATITUDE].toString();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -85,6 +99,9 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewLongitudeField() {
+    log("13");
+    final textFieldControl = controller.textFieldControllers[KEY_LONGITUDE];
+    textFieldControl?.text = storyMap[KEY_LONGITUDE].toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -100,6 +117,9 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewImageField() {
+    log("14");
+    final textFieldControl = controller.textFieldControllers[KEY_IMAGE];
+    textFieldControl?.text = storyMap[KEY_IMAGE].toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -115,6 +135,9 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewAddressField() {
+    log("15");
+    final textFieldControl = controller.textFieldControllers[KEY_ADDRESS_SEARCH];
+    textFieldControl?.text = storyMap[KEY_ADDRESS_SEARCH].toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -130,6 +153,9 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
   }
 
   Widget ListViewScriptField() {
+    log("16");
+    final textFieldControl = controller.textFieldControllers[KEY_SCRIPT];
+    textFieldControl?.text = storyMap[KEY_SCRIPT].toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -150,6 +176,7 @@ class UpdateStoryView extends GetView<UpdateStoryController> {
         icon: Icon(Icons.send),
         onPressed: (() async {
           controller.isUpdated = true;
+          controller.storyMap = storyMap;
           await controller.fireBaseUpdate();
           Get.back();
         }),
